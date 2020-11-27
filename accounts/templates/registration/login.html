@@ -1,0 +1,13 @@
+{% extends 'cookbook/base.html' %}
+
+{% block content%}
+
+<h3>Login</h3>
+<h4>{{ error }}</h4>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+</form>
+
+{% endblock%}
