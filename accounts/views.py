@@ -20,7 +20,7 @@ def signup_user(request):
                 new_user = User.objects.create_user(request.POST['username'], password=request.POST['password1'])
                 new_user.save()
                 login(request, new_user)
-                return redirect('cookbook:recipes')
+                return redirect('cookbook:get_recipes')
             except IntegrityError:
                 error = "That username has already been taken. Pleas choose another username."
                 return render(request, 'registration/signup.html', {'form': form, 'error': error})
@@ -41,7 +41,7 @@ def login_user(request):
                           {'form': form, 'error': 'Username or password is incorrect.'})
         else:
             login(request, user)
-            return redirect('cookbook:recipes')
+            return redirect('cookbook:get_recipes')
 
 
 def logout_user(request):

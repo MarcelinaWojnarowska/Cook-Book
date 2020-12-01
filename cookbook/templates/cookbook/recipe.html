@@ -1,0 +1,12 @@
+{% extends 'cookbook/base.html' %}
+
+{% block content%}
+<ul>
+    <h3>{{recipe.title}}</h3>
+    <img src="{{ recipe.image.url }}">
+    <p>Składniki: {{recipe.ingredients}}</p>
+    <p>Przygotowanie: {{recipe.preparing}}</p>
+    <p>Dodane: {{recipe.date_added|date:'d M Y'}}</p>
+</ul>
+</ul>
+{% endblock%}

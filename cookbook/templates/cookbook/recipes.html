@@ -2,6 +2,16 @@
 
 {% block content%}
 
-<h4>Yours recipes</h4>
+<h3>Dodane przepisy ({{ my_recipes.count }})</h3>
+<div>
+    {% for recipe in my_recipes %}
+    <a href="{% url 'cookbook:recipe_details' recipe.id %}">
+        <h4>{{ recipe.title }}</h4>
+        <img src="{{ recipe.image.url}}">
+    </a>
+    {% empty %}
+    <h4>Nie dodałeś do swojej książki kucharskiej żadnego przepisu.</h4>
+    {% endfor %}
+</div>
 
 {% endblock%}
