@@ -3,7 +3,11 @@
 {% block content%}
 <ul>
     <h3>{{recipe.title}}</h3>
-    <img src="{{ recipe.image.url }}">
+
+    {% if recipe.image %}
+        <img src="{{ recipe.image.url }}">
+    {%endif%}
+
     <p>Składniki: {{recipe.ingredients}}</p>
     <p>Przygotowanie: {{recipe.preparing}}</p>
     <p>Dodane: {{recipe.date_added|date:'d M Y'}}</p>

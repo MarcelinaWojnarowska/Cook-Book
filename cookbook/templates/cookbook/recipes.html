@@ -7,7 +7,9 @@
     {% for recipe in my_recipes %}
     <a href="{% url 'cookbook:recipe_details' recipe.id %}">
         <h4>{{ recipe.title }}</h4>
-        <img src="{{ recipe.image.url}}">
+        {% if recipe.image %}
+            <img src="{{ recipe.image.url}}">
+        {% endif %}
     </a>
     {% empty %}
     <p>czesc</p>

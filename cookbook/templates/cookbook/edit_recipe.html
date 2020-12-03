@@ -1,0 +1,18 @@
+{% extends 'cookbook/base.html' %}
+
+{% block content%}
+
+<h3>Edit Recipe:</h3>
+
+{% if error %}
+    {{ error }}
+{%endif%}
+
+<form action="{% url 'cookbook:edit_recipe' recipe.id %}" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Save changes</button>
+</form>
+
+
+{% endblock %}
