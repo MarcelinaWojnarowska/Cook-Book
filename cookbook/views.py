@@ -6,8 +6,13 @@ from .forms import RecipeForm
 
 @login_required
 def get_recipes(request):
-    my_recipes = Recipe.objects.filter(user=request.user).order_by('-date_added')
-    return render(request, 'cookbook/recipes.html', {'my_recipes': my_recipes})
+    query = request.GET.get('search')
+
+    if query:
+        results = Recipe.objects.filter(user=request.user, title__contains=query)
+    else:
+        results = Recipe.objects.filter(user=request.user).order_by('-date_added')
+    return render(request, 'cookbook/recipes.html', {'results': results, 'query': query})
 
 
 @login_required
@@ -31,10 +36,11 @@ def add_recipe(request):
 @login_required
 def recipe_details(request, recipe_id):
     recipe = Recipe.objects.get(id=recipe_id)
+    print(recipe.__str__())
     return render(request, 'cookbook/recipe.html', {'recipe': recipe})
 
 
-@login_required()
+@login_required
 def edit_recipe(request, recipe_id):
     recipe = Recipe.objects.get(id=recipe_id)
 

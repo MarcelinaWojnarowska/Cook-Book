@@ -1,5 +1,10 @@
 {% if user.is_authenticated %}
 
+<form action="{% url 'cookbook:get_recipes' %}" method="get">
+    <input type="text" name="search" placeholder="Search...">
+    <button type="submit">Search</button>
+</form>
+
 <form action="{% url 'accounts:logout_user' %}" method="POST">
     {% csrf_token %}
     <button type="submit">Logout</button>

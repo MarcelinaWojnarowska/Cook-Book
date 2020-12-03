@@ -2,18 +2,27 @@
 
 {% block content%}
 
-<h3>Dodane przepisy ({{ my_recipes.count }})</h3>
 <div>
-    {% for recipe in my_recipes %}
-    <a href="{% url 'cookbook:recipe_details' recipe.id %}">
-        <h4>{{ recipe.title }}</h4>
+    {% if results.count > 0 %}
+    <h3>Twoje przepisy ({{ results.count }}) </h3>
+    {% endif %}
+
+    {% for recipe in results %}
+
+    <a href="{% url 'cookbook:recipe_details' recipe.id %}"><h4>{{ recipe.title }}</h4>
         {% if recipe.image %}
-            <img src="{{ recipe.image.url}}">
+        <img src="{{ recipe.image.url}}">
         {% endif %}
     </a>
+
     {% empty %}
-    <p>czesc</p>
-    <h4>Nie dodałeś do swojej książki kucharskiej żadnego przepisu.</h4>
+
+    {% if query %}
+        <p>BRAK WYNIKÓW</p>
+    {% else %}
+        <p>Nie dodano jeszcze przepisów.</p>
+    {% endif %}
+
     {% endfor %}
 </div>
 
