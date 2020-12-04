@@ -35,14 +35,13 @@ def add_recipe(request):
 
 @login_required
 def recipe_details(request, recipe_id):
-    recipe = Recipe.objects.get(id=recipe_id)
-    print(recipe.__str__())
+    recipe = Recipe.objects.get(id=recipe_id, user=request.user)
     return render(request, 'cookbook/recipe.html', {'recipe': recipe})
 
 
 @login_required
 def edit_recipe(request, recipe_id):
-    recipe = Recipe.objects.get(id=recipe_id)
+    recipe = Recipe.objects.get(id=recipe_id, user=request.user)
 
     if request.method == 'GET':
         form = RecipeForm(instance=recipe)
@@ -54,3 +53,13 @@ def edit_recipe(request, recipe_id):
             return redirect('cookbook:recipe_details', recipe_id=recipe.id)
         except ValueError:
             render(request, 'cookbook/edit_recipe.html', {'recipe': recipe, 'form': form, 'error': "Bad info :/"})
+
+
+@login_required
+def delete_recipe(request, recipe_id):
+    recipe = Recipe.objects.get(id=recipe_id, user=request.user)
+
+    if request.method == 'POST':
+        recipe.delete()
+        return redirect('cookbook:get_recipes')
+

@@ -1,6 +1,6 @@
 {% if user.is_authenticated %}
 
-<form action="{% url 'cookbook:get_recipes' %}" method="get">
+<form action="{% url 'cookbook:get_recipes' %}" method="GET">
     <input type="text" name="search" placeholder="Search...">
     <button type="submit">Search</button>
 </form>

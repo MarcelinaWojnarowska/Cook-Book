@@ -1,17 +1,26 @@
 {% extends 'cookbook/base.html' %}
 
 {% block content%}
+
 <ul>
     <h3>{{recipe.title}}</h3>
 
     {% if recipe.image %}
-        <img src="{{ recipe.image.url }}">
+    <img src="{{ recipe.image.url }}">
     {%endif%}
 
     <p>Składniki: {{recipe.ingredients}}</p>
     <p>Przygotowanie: {{recipe.preparing}}</p>
     <p>Dodane: {{recipe.date_added}}</p>
     <p>Zaktualizowane: {{recipe.date_updated}}</p>
+
 </ul>
-</ul>
+
+<a href="{% url 'cookbook:edit_recipe' recipe.id %}">Edytuj przepis</a><br><br>
+<form action="{% url 'cookbook:delete_recipe' recipe.id %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Usuń</button>
+
+</form>
+
 {% endblock%}
