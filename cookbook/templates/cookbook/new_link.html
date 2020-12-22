@@ -1,0 +1,13 @@
+{% extends 'cookbook/base.html' %}
+
+{% block content%}
+
+<h4>New Link Recipe:</h4>
+
+<form action="{% url 'cookbook:add_recipe_link' %}" method="POST">
+    {% csrf_token %}
+    <input type="text" name="web_link">
+    <button type="submit">Add recipe</button>
+</form>
+
+{% endblock %}

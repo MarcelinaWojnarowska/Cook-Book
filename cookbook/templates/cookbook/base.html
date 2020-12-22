@@ -10,6 +10,9 @@
     <button type="submit">Logout</button>
 </form>
 
+<a href="{% url 'cookbook:add_recipe' %}" >WPISZ PRZEPIS</a><br>
+<a href="{% url 'cookbook:add_recipe_link' %}" >WKLEJ LINK DO PRZEPISU</a>
+
 {% else %}
 
 <a href="{% url 'accounts:signup_user' %}">Signup</a>

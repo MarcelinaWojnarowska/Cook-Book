@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 
 
 class Recipe(models.Model):
-
     image = models.ImageField(upload_to='images/')
     title = models.CharField(max_length=200)
     ingredients = models.TextField()
@@ -14,6 +13,3 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.title
-
-
-
