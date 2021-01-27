@@ -1,5 +1,4 @@
-from django import forms
-from django.forms import ModelForm
+from django.forms import ModelForm, ValidationError
 from .models import Recipe
 
 
@@ -9,7 +8,4 @@ class RecipeForm(ModelForm):
         fields = ['image', 'title', 'ingredients', 'preparing']
 
 
-class UrlRecipeForm(ModelForm):
-    class Meta:
-        model = Recipe
-        fields = ('image', 'title', 'ingredients', 'preparing')
+
